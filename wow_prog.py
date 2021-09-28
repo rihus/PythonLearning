@@ -59,21 +59,6 @@ def main_window():
     f_button3 = Button(box_f, text = 'Motivated', fg="green")
     f_button3.pack(side='left')
     
-# def quote_rep(button_p):
-#     if button_p=='Down':
-#         f=open('D:/ML_NNs/PyCodes/wow/down_feeling.txt')
-#         lines = f.readlines()
-#         print(random.choice(lines))
-#     elif button_p=='Normal':
-#         f=open('D:/ML_NNs/PyCodes/wow/normal_feeling.txt')
-#         lines = f.readlines()
-#         print(random.choice(lines))
-#     elif button_p=='Motivated':
-#         f=open('D:/ML_NNs/PyCodes/wow/motivated_feeling.txt')
-#         lines = f.readlines()
-#         print(random.choice(lines))
-       
-        
    
 # Set Interval
 w_root.after(3000,main_window)
