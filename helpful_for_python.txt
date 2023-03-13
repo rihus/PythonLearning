@@ -1,0 +1,39 @@
+# To generate a 3D array (3 x 3 x 2 here) of random integers between zero and 100:
+aa=np.random.randint(0, 100, size=(3, 3, 2))
+#replace values above a certain threshold by another number
+aa[aa>0.8] = 1
+
+# To check if all elements in one array are equal to another
+np.allclose([array 1], [array 2])
+
+# To check if a file exist at certain (or working) path
+import os
+fname = desired_directory + '/xyz.png'
+if os.path.exists(fname):
+    print(os.path.abspath(fname))
+else:
+    print("file not found")
+
+#python program to check if a path exists if it doesn’t exist, create one
+import os
+if not os.path.exists('my_folder'):
+   os.makedirs('my_folder')
+
+# To check if a certain number exist in an array (3d here)
+# np.any(bvolume[:, :,:] == 1)
+
+# Removing completely empty slices from 3rd dimension
+orig_valid_dims = np.flatnonzero(np.sum(orig_masked_norm, axis=(0, 1)))
+orig_masked_norm_nzero = orig_masked_norm[:,:,orig_valid_dims]
+
+# to add (append) a number at the end of array
+my_array = np.append(orig_array, orig_array[-1] + 1)
+or my_array = np.append(orig_array, numer_to_append)
+
+#To find number of values between a range [a, b] a=b=int
+((array < a) & (array >= 3)).sum()
+
+# To count the instances a certain value (or less/greater) occurs in an array
+np.count_nonzero(orig_shape > 5)
+
+print("FA keyhole hyper values", np.count_nonzero(FAkey_masked_norm > 0.4754164994537356))
