@@ -104,5 +104,36 @@ for root, dirs, files in os.walk(source_directory):
             # Rename the file
             os.rename(old_file_path4, new_file_path4)
 
+#%%Deleting files in certain directories
+source_directory_gre = r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis\CFNonCF_Bronch\IRC740H_2Dcartesian"
+source_directory_spiral = r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis\CFNonCF_Bronch\IRC740H_2Dspiral"
+file_to_delete = ''
 
+# Loop through all directories and files in the source directory
+for root, dirs, files in os.walk(source_directory_spiral):
+    for file in files:
+        # Check if the file matches the pattern: IRC740H-[number 3digits]_Vent_[date].nii'gz
+        # name_match_orig = re.search(r'IRC740H-(?P<number>\d+)_Vent_(?P<date>\d{8})\.nii\.gz$', file)
+        # name_match_N4 = re.search(r'IRC740H-(?P<number>\d+)_Vent_(?P<date>\d{8})_N4\.nii\.gz$', file)
+        # name_match_mask = re.search(r'IRC740H-(?P<number>\d+)_Vent_(?P<date>\d{8})_mask\.nii\.gz$', file)
+        name_match_orig = re.search(r"img_ventilation\.nii\.gz$", file)
+        name_match_N4 = re.search(r"img_ventilation_N4\.nii\.gz$", file)
+        name_match_keyhole = re.search(r"img_ventilation_corrected\.nii\.gz$", file)
+        name_match_mask = re.search(r"img_ventilation_mask\.nii\.gz$", file)
+        if name_match_orig:
+            print(f"\nFound the orig image in {root}")
+            # number = name_match_orig.groupdict().get('number')
+            # print("Number:", number)
+            # date = name_match_orig.groupdict().get('date')
+            # print("Date:", date)
+            # Delete the desired file or (empty) folder
+            #os.remove("demofile.txt")
+            #os.rmdir()
+        elif name_match_N4:
+            print("Found the N4 cor image")
+        elif name_match_keyhole:
+            print("Found FA keyhole cor image")
+        elif name_match_mask:
+            print("Found the mask")
+         
 #%%
