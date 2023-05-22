@@ -8,7 +8,7 @@ Created on Tue May 16 20:34:16 2023
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-
+#%%
 r = 12.5  # outer radius
 a = 0  # inner radius
 b = 0.5  # increment per revolution
@@ -131,10 +131,12 @@ num_lines = 25
 line_distance = 0.4
 
 # Create the animation
-animation = FuncAnimation(fig, update, init_func=init, frames=num_lines, interval=500)
+animation = FuncAnimation(fig, update, init_func=init, frames=num_lines, interval=35)
 
 # Save the animation as a GIF file
 animation.save('gre.gif', writer='pillow')
 
 # Show the plot (optional)
 plt.show()
+
+#%%
