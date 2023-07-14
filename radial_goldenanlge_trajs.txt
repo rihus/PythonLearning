@@ -1,0 +1,65 @@
+def radial(coord_shape, img_shape, golden=True, dtype=float):
+    """Generate radial trajectory.
+
+    Args:
+        coord_shape (tuple of ints): coordinates of shape [ntr, nro, ndim],
+            where ntr is the number of TRs, nro is the number of readout,
+            and ndim is the number of dimensions.
+        img_shape (tuple of ints): image shape.
+        golden (bool): golden angle ordering.
+        dtype (Dtype): data type.
+
+    Returns:
+        array: radial coordinates.
+
+    References:
+        1. An Optimal Radial Profile Order Based on the Golden
+        Ratio for Time-Resolved MRI
+        Stefanie Winkelmann, Tobias Schaeffter, Thomas Koehler,
+        Holger Eggers, and Olaf Doessel. TMI 2007.
+        2. Temporal stability of adaptive 3D radial MRI using
+        multidimensional golden means
+        Rachel W. Chan, Elizabeth A. Ramsay, Charles H. Cunningham,
+        and Donald B. Plewes. MRM 2009.
+
+    """
+    if len(img_shape) != coord_shape[-1]:
+        raise ValueError(
+            "coord_shape[-1] must match len(img_shape), "
+            "got {} and {}".format(coord_shape[-1], len(img_shape))
+        )
+
+    ntr, nro, ndim = coord_shape
+    if ndim == 2:
+        if golden:
+            phi = np.pi * (3 - 5**0.5)
+        else:
+            phi = 2 * np.pi / ntr
+
+        n, r = np.mgrid[:ntr, : 0.5 : 0.5 / nro]
+
+        theta = n * phi
+        coord = np.zeros((ntr, nro, 2))
+        coord[:, :, -1] = r * np.cos(theta)
+        coord[:, :, -2] = r * np.sin(theta)
+
+    elif ndim == 3:
+        if golden:
+            phi1 = 0.465571231876768
+            phi2 = 0.682327803828019
+        else:
+            raise NotImplementedError
+
+        n, r = np.mgrid[:ntr, : 0.5 : 0.5 / nro]
+
+        beta = np.arccos(2 * ((n * phi1) % 1) - 1)
+        alpha = 2 * np.pi * ((n * phi2) % 1)
+
+        coord = np.zeros((ntr, nro, 3))
+        coord[:, :, -1] = r * np.sin(beta) * np.cos(alpha)
+        coord[:, :, -2] = r * np.sin(beta) * np.sin(alpha)
+        coord[:, :, -3] = r * np.cos(beta)
+    else:
+        raise ValueError("coord_shape[-1] must be 2 or 3, got {}".format(ndim))
+
+    return (coord * img_shape[-ndim:]).astype(dtype)
