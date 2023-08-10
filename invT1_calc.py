@@ -5,11 +5,11 @@ Created on Sat Aug 1 10:37:06 2023
 @author: Riaz Hussain, PhD
 """
 #%%
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import numpy as np
 
-mHe3 = 3.016029 * 1.66053904e-27 # kg
-mO2 = 31.998* 1.66053904e-27 # kg
+mHe3 = 6.6423e-27 # kg
+mO2 = 1.33e-26 # kg
 mu = (mHe3 * mO2)/(mHe3 + mO2) # kg
 S = 1
 gamma_He3 = -20.3801587e7 # (rad T‑1 s-1)
