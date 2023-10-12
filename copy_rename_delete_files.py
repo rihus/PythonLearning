@@ -11,8 +11,8 @@ import re
 import glob
 #%%%
 #%%to copy files from subdirectories to corresponding subdirectories in new location
-source_directory = r'C:\Users\HUSDQ4\Desktop\Images for Keyhole Reconstruction\UniDens Healthy'
-destination_directory = r'C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis\ILD_HCs'
+source_directory = r"C:\Users\HUSDQ4\Desktop\Images for Keyhole Reconstruction\UniDens Healthy"
+destination_directory = r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis\ILD_HCs"
 file_to_copy = 'img_ventilation_corrected.nii.gz'
 
 for root, dirs, files in os.walk(source_directory):
@@ -138,13 +138,13 @@ for root, dirs, files in os.walk(source_directory_spiral):
          
 
 #%%Deleting files in certain directories
-SOURCE_DIR = r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis\CFNonCF_Bronch\IRC740H_2Dcartesian"
-
-#COMMON_STRING = "ILD-HC-0"
-COMMON_STRING = "IRC740H-0"
-FILE_2_DEL = "all_vdp_log.txt"
-FOLDER_2_DEL1 = "vdp_analysis_Orig"
-FOLDER_2_DEL2 = "vdp_analysis_N4"
+#SOURCE_DIR = r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis\CFNonCF_Bronch\IRC740H_2Dcartesian"
+SOURCE_DIR = r"C:/Users/HUSDQ4/OneDrive - cchmc/cincy_work/human_data/VDP_analysis/healthy_subjects/"
+COMMON_STRING = "ILD-HC-0"
+#COMMON_STRING = "IRC740H-0"
+FILE_2_DEL = "N4_gamlss_glb_percentages.txt"
+# FOLDER_2_DEL1 = "vdp_analysis_Orig"
+# FOLDER_2_DEL2 = "vdp_analysis_N4"
 #FOLDER_2_DEL3 = "vdp_analysis_FAkey"
 
 # Walk through all the directories and subdirectories that contain the common_string
@@ -153,11 +153,11 @@ for root, dirs, files in os.walk(SOURCE_DIR, topdown=True):
         if COMMON_STRING in name:
             print(name)
             # Check if the folder to delete exists
-            print(root + "\\" + name + "\\" + FOLDER_2_DEL1)
-            print("found the folder: ", FOLDER_2_DEL1)
-            shutil.rmtree(root + "\\" + name + "\\" + FOLDER_2_DEL1)
-            print("found the folder: ", FOLDER_2_DEL2)
-            shutil.rmtree(root + "\\" + name + "\\" + FOLDER_2_DEL2)
+            # print(root + "\\" + name + "\\" + FOLDER_2_DEL1)
+            # print("found the folder: ", FOLDER_2_DEL1)
+            # shutil.rmtree(root + "\\" + name + "\\" + FOLDER_2_DEL1)
+            # print("found the folder: ", FOLDER_2_DEL2)
+            # shutil.rmtree(root + "\\" + name + "\\" + FOLDER_2_DEL2)
             # print("found the folder: ", FOLDER_2_DEL3)
             # shutil.rmtree(root + "\\" + name + "\\" + FOLDER_2_DEL3)
             if FILE_2_DEL in os.listdir(root + "\\" + name):
