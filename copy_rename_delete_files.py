@@ -139,10 +139,11 @@ for root, dirs, files in os.walk(source_directory_spiral):
 
 #%%Deleting files in certain directories
 #SOURCE_DIR = r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis\CFNonCF_Bronch\IRC740H_2Dcartesian"
-SOURCE_DIR = r"C:/Users/HUSDQ4/OneDrive - cchmc/cincy_work/human_data/VDP_analysis/healthy_subjects/"
-COMMON_STRING = "ILD-HC-0"
-#COMMON_STRING = "IRC740H-0"
-FILE_2_DEL = "N4_gamlss_glb_percentages.txt"
+#SOURCE_DIR = r"C:/Users/HUSDQ4/OneDrive - cchmc/cincy_work/human_data/VDP_analysis/healthy_subjects/"
+SOURCE_DIR = r"C:\Users\HUSDQ4\Desktop\Images_for_Keyhole_Reconstruction\UniDens_CF_Visit1"
+#COMMON_STRING = "ILD-HC-0"
+COMMON_STRING = "IRC740H-0"
+FILE_2_DEL = "img_ventilation_mask.nii.gz"
 # FOLDER_2_DEL1 = "vdp_analysis_Orig"
 # FOLDER_2_DEL2 = "vdp_analysis_N4"
 #FOLDER_2_DEL3 = "vdp_analysis_FAkey"
@@ -163,7 +164,6 @@ for root, dirs, files in os.walk(SOURCE_DIR, topdown=True):
             if FILE_2_DEL in os.listdir(root + "\\" + name):
                 # Delete the file
                 print("found the file: ", FILE_2_DEL)
-                os.remove(root + "\\" + name + "\\" + FILE_2_DEL)
-                
+                os.remove(root + "\\" + name + "\\" + FILE_2_DEL)      
 
 #%%
