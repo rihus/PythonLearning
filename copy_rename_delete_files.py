@@ -138,12 +138,13 @@ for root, dirs, files in os.walk(source_directory_spiral):
          
 
 #%%Deleting files in certain directories
-#SOURCE_DIR = r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis\CFNonCF_Bronch\IRC740H_2Dcartesian"
+SOURCE_DIR = r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis\CFNonCF_Bronch\IRC740H_2Dspiral_CF"
 #SOURCE_DIR = r"C:/Users/HUSDQ4/OneDrive - cchmc/cincy_work/human_data/VDP_analysis/healthy_subjects/"
-SOURCE_DIR = r"C:\Users\HUSDQ4\Desktop\Images_for_Keyhole_Reconstruction\UniDens_CF_Visit1"
+#SOURCE_DIR = r"C:\Users\HUSDQ4\Desktop\Images_for_Keyhole_Reconstruction\UniDens_CF_Visit1"
 #COMMON_STRING = "ILD-HC-0"
 COMMON_STRING = "IRC740H-0"
-FILE_2_DEL = "img_ventilation_mask.nii.gz"
+FILE_2_DEL = "flip_angle_map_mask.nii.gz"
+#FILE_EXTENSIONS = ['.list', '.data', '.raw', '.lab', '.sin', '.npy']
 # FOLDER_2_DEL1 = "vdp_analysis_Orig"
 # FOLDER_2_DEL2 = "vdp_analysis_N4"
 #FOLDER_2_DEL3 = "vdp_analysis_FAkey"
@@ -163,7 +164,15 @@ for root, dirs, files in os.walk(SOURCE_DIR, topdown=True):
             # shutil.rmtree(root + "\\" + name + "\\" + FOLDER_2_DEL3)
             if FILE_2_DEL in os.listdir(root + "\\" + name):
                 # Delete the file
-                print("found the file: ", FILE_2_DEL)
-                os.remove(root + "\\" + name + "\\" + FILE_2_DEL)      
+                print(f"Found and deleted: {FILE_2_DEL}")
+                os.remove(root + "\\" + name + "\\" + FILE_2_DEL)
+            # for ext in FILE_EXTENSIONS:
+            #     files_to_delete = glob.glob(os.path.join(root, name, f"*{ext}"))
+            #     for file_to_delete in files_to_delete:
+            #         try:
+            #             os.remove(file_to_delete)
+            #             print(f"Found and deleted: {file_to_delete}")
+            #         except OSError as e:
+            #             print(f"Error deleting {file}: {e}")
 
 #%%
