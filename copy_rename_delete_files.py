@@ -106,11 +106,13 @@ for root, dirs, files in os.walk(source_directory):
             os.rename(old_file_path4, new_file_path4)
 
 #%%Detecting cetain files in provided directories
-source_directory_gre = r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis\CFNonCF_Bronch\IRC740H_2Dcartesian"
-source_directory_spiral = r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis\CFNonCF_Bronch\IRC740H_2Dspiral"
+# SOURCE_DIR_GRE = (r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis"
+#                         r"\CFNonCF_Bronch\IRC740H_2Dcartesian")
+SOURCE_DIR_SPIRAL = (r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis"
+                    r"\CFNonCF_Bronch\IRC740H_2Dspiral_CF")
 
 # Loop through all directories and files in the source directory
-for root, dirs, files in os.walk(source_directory_spiral):
+for root, dirs, files in os.walk(SOURCE_DIR_SPIRAL):
     for file in files:
         # Check if the file matches the pattern: IRC740H-[number 3digits]_Vent_[date].nii'gz
         # name_match_orig = re.search(r'IRC740H-(?P<number>\d+)_Vent_(?P<date>\d{8})\.nii\.gz$', file)
@@ -135,7 +137,6 @@ for root, dirs, files in os.walk(source_directory_spiral):
             print("Found FA keyhole cor image")
         elif name_match_mask:
             print("Found the mask")
-         
 
 #%%Deleting files in certain directories
 SOURCE_DIR = r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis\CFNonCF_Bronch\IRC740H_2Dspiral_CF"
