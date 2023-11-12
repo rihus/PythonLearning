@@ -52,13 +52,13 @@ for root, dirs, files in os.walk(PARENT_DIR):
 
 #%%Another code for renaming multiple files in multiple directories
 PARENT_DIR = (r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis"
-              r"\CFNonCF_Bronch\IRC740H_2Dcartesian")
+              r"\CFNonCF_Bronch\IRC740H_2Dcartesian_Healthy")
 #Indentify files to be renamed
-ORIG_FILE = r'^IRC740H-\d{3}_Vent_\d{8}\.nii\.gz$'
-N4_FILE = r'^IRC740H-\d{3}_Vent_\d{8}_N4\.nii\.gz$'
+ORIG_FILE = r'^IRC740H-\d{3}c_Vent_\d{8}\.nii\.gz$'
+N4_FILE = r'^IRC740H-\d{3}c_Vent_\d{8}_N4\.nii\.gz$'
 #FA_FILE = r'^ILD-HC-\d{3}_Vent_\d{8}_corrected\.nii\.gz$'
-MASK_FILE = r'^IRC740H-\d{3}_Vent_\d{8}_mask\.nii\.gz$'
-PROTON_FILE = r'^IRC740H-\d{3}_Vent_\d{8}_proton\.nii\.gz$'
+MASK_FILE = r'^IRC740H-\d{3}c_Vent_\d{8}_mask\.nii\.gz$'
+PROTON_FILE = r'^IRC740H-\d{3}c_Vent_\d{8}_proton\.nii\.gz$'
 
 #New file names
 ORIG_NEW_NAME = 'img_ventilation.nii.gz'
