@@ -12,25 +12,22 @@ import glob
 #%%%
 #%%to copy files from subdirectories to corresponding subdirectories in new location
 PARENT_DIR = r"C:\Users\HUSDQ4\Desktop\Images for Keyhole Reconstruction\UniDens Healthy"
-destination_directory = r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis\ILD_HCs"
-file_to_copy = 'img_ventilation_corrected.nii.gz'
+TARGET_DIR = r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis\ILD_HCs"
+FILE_2_COPY = 'img_ventilation_corrected.nii.gz'
 
 for root, dirs, files in os.walk(PARENT_DIR):
-    for dir in dirs:
-        if file_to_copy in os.listdir(os.path.join(root, dir)):
-            source_file = os.path.join(root, dir, file_to_copy)
-            destination_dir = os.path.join(destination_directory, dir)
-            destination_file = os.path.join(destination_dir, file_to_copy)
+    for a_dir in dirs:
+        if FILE_2_COPY in os.listdir(os.path.join(root, a_dir)):
+            source_file = os.path.join(root, a_dir, FILE_2_COPY)
+            destination_dir = os.path.join(TARGET_DIR, a_dir)
+            destination_file = os.path.join(destination_dir, FILE_2_COPY)
             print(f'Copying {source_file} to {destination_file}')
             shutil.copy(source_file, destination_file)
 
 
 #%%Renaming files in a prticular directory
 PARENT_DIR = r'C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis\ILD_HCs'
-file_to_rename = 'img_ventilation_corrected.nii.gz'
-
-# Define a regular expression pattern to match the desired file name format
-pattern = r'^ILD-HC-\d{3}_Vent_\d{8}\.nii\.gz$'
+FILE_2_RENAME = 'img_ventilation_corrected.nii.gz'
 
 # Loop through all directories and files in the source directory
 for root, dirs, files in os.walk(PARENT_DIR):
@@ -45,7 +42,7 @@ for root, dirs, files in os.walk(PARENT_DIR):
             new_file_name = f'ILD-HC-{number}_Vent_{date}_corrected.nii.gz'
             ## Construct the source and destination file paths
             destination_file = os.path.join(root, new_file_name)
-            source_file = os.path.join(root, file_to_rename)
+            source_file = os.path.join(root, FILE_2_RENAME)
             print(f"File: \n{source_file} \nRenamed as: \n{destination_file}")
             # Copy the file to the destination with the new name
             os.rename(source_file, destination_file)
@@ -131,21 +128,21 @@ TOTAL_SUBJS5=0
 for root, dirs, files in os.walk(SOURCE_DIR):
     for file in files:
         # Check if the file matches the pattern: IRC740H-[number 3digits]_Vent_[date].nii'gz
-        # name_match_orig = re.search(r'IRC740H-(?P<number>\d+)_Vent_(?P<date>\d{8})\.nii\.gz$', file)
+        # name_match_No_corr = re.search(r'IRC740H-(?P<number>\d+)_Vent_(?P<date>\d{8})\.nii\.gz$', file)
         # name_match_N4 = re.search(r'IRC740H-(?P<number>\d+)_Vent_(?P<date>\d{8})_N4\.nii\.gz$', file)
         # name_match_mask = re.search(r'IRC740H-(?P<number>\d+)_Vent_(?P<date>\d{8})_mask\.nii\.gz$', file)
-        name_match_orig = re.search(r"img_ventilation\.nii\.gz$", file)
+        name_match_No_corr = re.search(r"img_ventilation\.nii\.gz$", file)
         name_match_N4 = re.search(r"img_ventilation_N4\.nii\.gz$", file)
         name_match_keyhole = re.search(r"img_ventilation_corrected\.nii\.gz$", file)
         name_match_mask = re.search(r"img_ventilation_mask\.nii\.gz$", file)
         name_match_proton = re.search(r"img_proton\.nii\.gz$", file)
-        if name_match_orig:
+        if name_match_No_corr:
             TOTAL_SUBJS1 = TOTAL_SUBJS1 + 1
             print(f"DIR:{root}")
             print("Found the orig image")
-            # number = name_match_orig.groupdict().get('number')
+            # number = name_match_No_corr.groupdict().get('number')
             # print("Number:", number)
-            # date = name_match_orig.groupdict().get('date')
+            # date = name_match_No_corr.groupdict().get('date')
             # print("Date:", date)
             # Delete the desired file or (empty) folder
             #os.remove("demofile.txt")
@@ -169,19 +166,19 @@ print(f"Total proton images {TOTAL_SUBJS2}")
 print(f"Total mask images {TOTAL_SUBJS4}")
 
 #%%Deleting files/folder in certain directories
-SOURCE_DIR = (r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis"
-              r"\CFNonCF_Bronch\IRC740H_2Dcartesian")
-SOURCE_DIR = (r"C:/Users/HUSDQ4/OneDrive - cchmc/cincy_work/human_data/VDP_analysis"
-              "/healthy_subjects/")
+# SOURCE_DIR = (r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis"
+#               r"\CFNonCF_Bronch\IRC740H_2Dcartesian")
+SOURCE_DIR = (r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\all_projects_data_work"
+              r"\VDP_analysis\CFNonCF_Bronch\IRC740H_2Dspiral_CF")
 #SOURCE_DIR = r"C:\Users\HUSDQ4\Desktop\Images_for_Keyhole_Reconstruction\UniDens_CF_Visit1"
 #COMMON_STRING = "ILD-HC-0"
 COMMON_STRING = "IRC740H-0"
-#FILE_2_DEL = "flip_angle_map_mask.nii.gz"
+FILE_2_DEL = "all_vdp_log.txt"
 #FILE_EXTENSIONS = ['.list', '.data', '.raw', '.lab', '.sin', '.npy']
-FILE_EXTENSIONS = ['.txt']
-FOLDER_2_DEL1 = "vdp_analysis_Orig"
+#FILE_EXTENSIONS = ['.txt']
+FOLDER_2_DEL1 = "vdp_analysis_No_corr"
 FOLDER_2_DEL2 = "vdp_analysis_N4"
-#FOLDER_2_DEL3 = "vdp_analysis_FAkey"
+FOLDER_2_DEL3 = "vdp_analysis_keyhole"
 
 # Walk through all the directories and subdirectories that contain the common_string
 for root, dirs, files in os.walk(SOURCE_DIR, topdown=True):
@@ -194,19 +191,19 @@ for root, dirs, files in os.walk(SOURCE_DIR, topdown=True):
             shutil.rmtree(root + "\\" + name + "\\" + FOLDER_2_DEL1)
             print("found the folder: ", FOLDER_2_DEL2)
             shutil.rmtree(root + "\\" + name + "\\" + FOLDER_2_DEL2)
-            # print("found the folder: ", FOLDER_2_DEL3)
-            # shutil.rmtree(root + "\\" + name + "\\" + FOLDER_2_DEL3)
-            # if FILE_2_DEL in os.listdir(root + "\\" + name):
-            #     # Delete the file
-            #     print(f"Found and deleted: {FILE_2_DEL}")
-            #     os.remove(root + "\\" + name + "\\" + FILE_2_DEL)
-            for ext in FILE_EXTENSIONS:
-                files_to_delete = glob.glob(os.path.join(root, name, f"*{ext}"))
-                for file_to_delete in files_to_delete:
-                    try:
-                        os.remove(file_to_delete)
-                        print(f"Found and deleted: {file_to_delete}")
-                    except OSError as e:
-                        print(f"Error deleting {file}: {e}")
+            print("found the folder: ", FOLDER_2_DEL3)
+            shutil.rmtree(root + "\\" + name + "\\" + FOLDER_2_DEL3)
+            if FILE_2_DEL in os.listdir(root + "\\" + name):
+                # Delete the file
+                print(f"Found and deleted: {FILE_2_DEL}")
+                os.remove(root + "\\" + name + "\\" + FILE_2_DEL)
+            # for ext in FILE_EXTENSIONS:
+            #     files_to_delete = glob.glob(os.path.join(root, name, f"*{ext}"))
+            #     for file_to_delete in files_to_delete:
+            #         try:
+            #             os.remove(file_to_delete)
+            #             print(f"Found and deleted: {file_to_delete}")
+            #         except OSError as e:
+            #             print(f"Error deleting {file}: {e}")
 
 #%%
