@@ -4,12 +4,12 @@ Created on Wed Apr 19 11:47:21 2023
 
 @author: Riaz Hussain, PhD
 """
-#%% Import files from one
+#%% Import libraries
 import os
 import shutil
 import re
 import glob
-#%%%
+
 #%%to copy files from subdirectories to corresponding subdirectories in new location
 PARENT_DIR = r"C:\Users\HUSDQ4\Desktop\Images for Keyhole Reconstruction\UniDens Healthy"
 TARGET_DIR = r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis\ILD_HCs"
@@ -166,10 +166,10 @@ print(f"Total proton images {TOTAL_SUBJS2}")
 print(f"Total mask images {TOTAL_SUBJS4}")
 
 #%%Deleting files/folder in certain directories
-# SOURCE_DIR = (r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\human_data\VDP_analysis"
-#               r"\CFNonCF_Bronch\IRC740H_2Dcartesian")
+# SOURCE_DIR = (r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\all_projects_data_work\vdp_analysis"
+#               r"\CFNonCF_Bronch\IRC740H_2Dcartesian_CF")
 SOURCE_DIR = (r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\all_projects_data_work"
-              r"\VDP_analysis\CFNonCF_Bronch\IRC740H_2Dspiral_CF")
+              r"\vdp_analysis\CFNonCF_Bronch\IRC740H_2Dspiral_CF")
 #SOURCE_DIR = r"C:\Users\HUSDQ4\Desktop\Images_for_Keyhole_Reconstruction\UniDens_CF_Visit1"
 #COMMON_STRING = "ILD-HC-0"
 COMMON_STRING = "IRC740H-0"
