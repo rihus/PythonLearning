@@ -166,44 +166,55 @@ print(f"Total proton images {TOTAL_SUBJS2}")
 print(f"Total mask images {TOTAL_SUBJS4}")
 
 #%%Deleting files/folder in certain directories
-# SOURCE_DIR = (r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\all_projects_data_work\vdp_analysis"
-#               r"\CFNonCF_Bronch\IRC740H_2Dcartesian_CF")
-SOURCE_DIR = (r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\all_projects_data_work"
-              r"\vdp_analysis\CFNonCF_Bronch\IRC740H_2Dspiral_CF")
+SOURCE_DIR = (r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\all_projects_data_work\vdp_analysis"
+              r"\CFNonCF_Bronch\IRC740H_2Dspiral_healthy")
+# SOURCE_DIR = (r"C:\Users\HUSDQ4\OneDrive - cchmc\cincy_work\all_projects_data_work"
+#               r"\vdp_analysis\healthy_subjects_for_bins\cf_agematched_spiral")
 #SOURCE_DIR = r"C:\Users\HUSDQ4\Desktop\Images_for_Keyhole_Reconstruction\UniDens_CF_Visit1"
 #COMMON_STRING = "ILD-HC-0"
 COMMON_STRING = "IRC740H-0"
-FILE_2_DEL = "all_vdp_log.txt"
+FILE_2_DEL = "FA_corr_vdp_hvp_log.txt"
 #FILE_EXTENSIONS = ['.list', '.data', '.raw', '.lab', '.sin', '.npy']
-#FILE_EXTENSIONS = ['.txt']
-FOLDER_2_DEL1 = "vdp_analysis_No_corr"
-FOLDER_2_DEL2 = "vdp_analysis_N4"
-FOLDER_2_DEL3 = "vdp_analysis_keyhole"
+FILE_EXTENSIONS = ['.png']
+FOLDER_2_DEL1 = "N4_corr_hvp_multi_thresh_analysis"
+FOLDER_2_DEL2 = "N4_corr_vdp_hvp_analysis"
+FOLDER_2_DEL3 = "N4_corr_vdp_multi_thresh_analysis"
+# FOLDER_2_DEL1 = "FA_corr_hvp_multi_thresh_analysis"
+# FOLDER_2_DEL2 = "FA_corr_vdp_hvp_analysis"
+# FOLDER_2_DEL3 = "FA_corr_vdp_multi_thresh_analysis"
+
+FOLDER_2_DEL4 = "Non_corr_vdp_hvp_analysis"
 
 # Walk through all the directories and subdirectories that contain the common_string
 for root, dirs, files in os.walk(SOURCE_DIR, topdown=True):
     for name in dirs:
         if COMMON_STRING in name:
             print(name)
-            # Check if the folder to delete exists
-            print(root + "\\" + name + "\\" + FOLDER_2_DEL1)
-            print("found the folder: ", FOLDER_2_DEL1)
-            shutil.rmtree(root + "\\" + name + "\\" + FOLDER_2_DEL1)
-            print("found the folder: ", FOLDER_2_DEL2)
-            shutil.rmtree(root + "\\" + name + "\\" + FOLDER_2_DEL2)
-            print("found the folder: ", FOLDER_2_DEL3)
-            shutil.rmtree(root + "\\" + name + "\\" + FOLDER_2_DEL3)
+            # # #Check if the folder to delete exists
+            if FOLDER_2_DEL1 in os.listdir(root + "\\" + name):
+                print(root + "\\" + name + "\\" + FOLDER_2_DEL1)
+                print("found the folder: ", FOLDER_2_DEL1)
+                shutil.rmtree(root + "\\" + name + "\\" + FOLDER_2_DEL1)
+            if FOLDER_2_DEL2 in os.listdir(root + "\\" + name):
+                print("found the folder: ", FOLDER_2_DEL2)
+                shutil.rmtree(root + "\\" + name + "\\" + FOLDER_2_DEL2)
+            if FOLDER_2_DEL3 in os.listdir(root + "\\" + name):
+                print("found the folder: ", FOLDER_2_DEL3)
+                shutil.rmtree(root + "\\" + name + "\\" + FOLDER_2_DEL3)
+            if FOLDER_2_DEL4 in os.listdir(root + "\\" + name):
+                print("found the folder: ", FOLDER_2_DEL4)
+                shutil.rmtree(root + "\\" + name + "\\" + FOLDER_2_DEL4)
             if FILE_2_DEL in os.listdir(root + "\\" + name):
                 # Delete the file
                 print(f"Found and deleted: {FILE_2_DEL}")
                 os.remove(root + "\\" + name + "\\" + FILE_2_DEL)
-            # for ext in FILE_EXTENSIONS:
-            #     files_to_delete = glob.glob(os.path.join(root, name, f"*{ext}"))
-            #     for file_to_delete in files_to_delete:
-            #         try:
-            #             os.remove(file_to_delete)
-            #             print(f"Found and deleted: {file_to_delete}")
-            #         except OSError as e:
-            #             print(f"Error deleting {file}: {e}")
+            for ext in FILE_EXTENSIONS:
+                files_to_delete = glob.glob(os.path.join(root, name, f"*_montage_1{ext}"))
+                for file_to_delete in files_to_delete:
+                    try:
+                        os.remove(file_to_delete)
+                        print(f"Found and deleted: {file_to_delete}")
+                    except OSError as e:
+                        print(f"Error deleting {file}: {e}")
 
 #%%
